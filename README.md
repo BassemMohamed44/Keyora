@@ -6,21 +6,21 @@ It combines typing tests, progressive learning levels, adaptive practice, error 
 
 ## Highlights
 
-- 🌍 Arabic + English interface
-- ⌨️ Arabic and English typing practice
-- 🔄 RTL / LTR support
-- ⚡ Raw WPM, Adjusted WPM, CPM and accuracy metrics
-- 🎯 Progressive learning path with 13 levels
-- 🧠 Adaptive training based on typing weaknesses
-- 🔥 Keyboard heatmap and problematic-key analysis
-- 📊 Performance charts and test history
-- 🏆 XP, achievements and streak tracking
-- 📅 Daily challenge
-- 💻 Code typing for JavaScript, Python, C++, HTML and CSS
-- 📝 Custom article typing mode
-- 💾 Local browser storage with export/import support
-- ♿ Accessibility and reduced-motion support
-- 📱 Responsive layout for desktop, tablet and mobile
+- Arabic + English interface
+- Arabic and English typing practice
+- RTL / LTR support
+- Raw WPM, Adjusted WPM, CPM and accuracy metrics
+- Progressive learning path with 13 levels
+- Adaptive training based on typing weaknesses
+- Keyboard heatmap and problematic-key analysis
+- Performance charts and test history
+- XP, achievements and streak tracking
+- Daily challenge
+- Code typing for JavaScript, Python, C++, HTML and CSS
+- Custom article typing mode
+- Local browser storage with export/import support
+- Accessibility and reduced-motion support
+- Responsive layout for desktop, tablet and mobile
 
 ## Tech Stack
 
