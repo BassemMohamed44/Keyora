@@ -1,0 +1,34 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Local development
+.env
+.env.*
+!.env.example
+
+# Build / tooling output
+dist/
+build/
+coverage/
+node_modules/
+
+# Python cache (if local tooling/tests are added later)
+__pycache__/
+*.py[cod]
+
+# Generated archives
+*.zip
+*.tar
+*.tar.gz
