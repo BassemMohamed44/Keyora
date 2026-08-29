@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keyora — تعلّم الكتابة بالعربية والإنجليزية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- ### WEBSITE ICON ### -->
+    <link rel="icon" type="image/x-icon" href="assets/keyora.ico">
+
+    <!-- ### WEBSITE DESCRIPTION ### -->
+    <meta name="description" content="A modern bilingual (Arabic/English) typing tutor with real-time WPM/accuracy tracking, virtual keyboard with finger heatmaps, adaptive training, guided learning levels, custom article practice, code typing mode, XP/streaks/achievements, and detailed statistics — built with vanilla JS and a premium light glassmorphism UI.">
+
+    <!-- ### OPEN GRAPH META TAGS FOR SOCIAL MEDIA SHARING ### -->
+    <meta property="og:title" content="Keyora - Learn to Type Arabic and English">
+    <meta property="og:image" content="assets/keyora.ico"/>
+    <meta property="og:description" content="A modern bilingual (Arabic/English) typing tutor with real-time WPM/accuracy tracking, virtual keyboard with finger heatmaps, adaptive training, guided learning levels, custom article practice, code typing mode, XP/streaks/achievements, and detailed statistics — built with vanilla JS and a premium light glassmorphism UI">
+    <meta property="og:type" content="website">
+</head>
+
+<body>
+<div class="app">
+
+<header class="topbar" role="banner">
+  <div class="logo">
+    <div class="logo-badge" aria-hidden="true">  
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 9C8.55228 9 9 8.55228 9 8C9 7.44772 8.55228 7 8 7C7.44772 7 7 7.44772 7 8C7 8.55228 7.44772 9 8 9Z"fill="currentColor"/>
+            <path d="M9 15C8.44772 15 8 15.4477 8 16C8 16.5523 8.44772 17 9 17H15C15.5523 17 16 16.5523 16 16C16 15.4477 15.5523 15 15 15H9Z"fill="currentColor"/>
+            <path d="M9 12C9 12.5523 8.55228 13 8 13C7.44772 13 7 12.5523 7 12C7 11.4477 7.44772 11 8 11C8.55228 11 9 11.4477 9 12Z"fill="currentColor"/>
+            <path d="M12 9C12.5523 9 13 8.55228 13 8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8C11 8.55228 11.4477 9 12 9Z"fill="currentColor"/>
+            <path d="M13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12Z"fill="currentColor"/>
+            <path d="M16 9C16.5523 9 17 8.55228 17 8C17 7.44772 16.5523 7 16 7C15.4477 7 15 7.44772 15 8C15 8.55228 15.4477 9 16 9Z"fill="currentColor"/>
+            <path d="M17 12C17 12.5523 16.5523 13 16 13C15.4477 13 15 12.5523 15 12C15 11.4477 15.4477 11 16 11C16.5523 11 17 11.4477 17 12Z"fill="currentColor"/>
+            <path fill-rule="evenodd"clip-rule="evenodd"d="M3 6C3 4.34315 4.34315 3 6 3H18C19.6569 3 21 4.34315 21 6V18C21 19.6569 19.6569 21 18 21H6C4.34315 21 3 19.6569 3 18V6ZM6 5H18C18.5523 5 19 5.44772 19 6V18C19 18.5523 18.5523 19 18 19H6C5.44772 19 5 18.5523 5 18V6C5 5.44772 5.44772 5 6 5Z"fill="currentColor"/>
+        </svg> 
+      </div>
+    <div>
+      <div data-i18n="brand">Keyora</div>
+    </div>
+  </div>
+  <nav class="nav-actions" role="navigation" aria-label="Main">
+    <div class="lang-switch" id="langSwitch" role="group" aria-label="Language">
+      <button data-lang="ar" class="active" aria-pressed="true">ع</button>
+      <button data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <button class="btn ghost" data-nav="home" data-i18n="nav_home">الرئيسية</button>
+    <button class="btn ghost" data-nav="learn" data-i18n="nav_learn">تعلّم</button>
+    <button class="btn ghost" data-nav="test" data-i18n="nav_test">اختبار</button>
+    <button class="btn ghost" data-nav="code" data-i18n="nav_code">كود</button>
+    <button class="btn ghost" data-nav="custom" data-i18n="nav_custom">مقالي</button>
+    <button class="btn ghost" data-nav="adaptive" data-i18n="nav_adaptive">تكيّفي</button>
+    <button class="btn ghost" data-nav="stats" data-i18n="nav_stats">إحصائيات</button>
+    <button class="btn ghost" data-nav="achievements" data-i18n="nav_achievements">إنجازات</button>
+    <button class="btn ghost" data-nav="settings" data-i18n="nav_settings">إعدادات</button>
+  </nav>
+</header>
+
+<section class="page active" id="page-home" role="main">
+  <div class="hero">
+    <div class="card hero-left">
+      <h1 data-i18n="hero_title">أتقن الكتابة بسرعة ودقة</h1>
+      <p data-i18n="hero_desc">منصة تعليمية احترافية لتعلّم الكتابة بالعربية والإنجليزية، مع تحليل متقدم للأخطاء، تدريب تكيّفي، ونظام إنجازات.</p>
+      <div class="hero-cta">
+        <button class="btn primary" data-nav="test" data-i18n="start_test">ابدأ اختبار السرعة</button>
+        <button class="btn accent" data-nav="learn" data-i18n="start_learn">ابدأ التعلّم</button>
+        <button class="btn" id="dailyChallengeBtn" data-i18n="daily_challenge">تحدي اليوم</button>
+      </div>
+      <div class="mt-16">
+        <div class="flex" style="justify-content:space-between;font-size:13px">
+          <span data-i18n="your_level">مستواك</span>
+          <span class="mono text-neon"><span id="homeLevel">1</span> · <span id="homeXp">0</span> XP</span>
+        </div>
+        <div class="xp-bar"><div id="homeXpBar" style="width:0%"></div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="stat neon"><div class="label" data-i18n="best_wpm">أفضل سرعة</div><div class="value" id="statBestWpm">0</div><div class="sub">WPM</div></div>
+      <div class="stat"><div class="label" data-i18n="best_acc">أفضل دقة</div><div class="value" id="statBestAcc">0%</div><div class="sub">Accuracy</div></div>
+      <div class="stat"><div class="label" data-i18n="streak">السلسلة</div><div class="value" id="statStreak">0</div><div class="sub" data-i18n="days">يوم</div></div>
+      <div class="stat"><div class="label" data-i18n="total_tests">الاختبارات</div><div class="value" id="statTotal">0</div><div class="sub" data-i18n="tests">اختبار</div></div>
+    </div>
+  </div>
+
+  <div class="features">
+    <div class="feature" data-nav="learn"><div class="ic">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+        <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783"/>
+      </svg>
+    </div><h4 data-i18n="f_learn_title">تعلّم متدرّج</h4><p data-i18n="f_learn_desc">13 مستوى من الأساسيات إلى الاحتراف.</p></div>
+
+    <div class="feature" data-nav="test"><div class="ic">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning-fill" viewBox="0 0 16 16">
+        <path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641z"/>  
+      </svg>
+    </div><h4 data-i18n="f_test_title">اختبارات السرعة</h4><p data-i18n="f_test_desc">Raw/Adjusted WPM، CPM، ودقة حقيقية.</p></div>
+    
+    <div class="feature" data-nav="code"><div class="ic">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-laptop" viewBox="0 0 16 16">
+        <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5"/>
+      </svg>
+    </div><h4 data-i18n="f_code_title">كتابة الأكواد</h4><p data-i18n="f_code_desc">تدرّب على الرموز: {} [] () ; = +</p></div>
+    
+    <div class="feature" data-nav="adaptive"><div class="ic">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-patch-exclamation-fill" viewBox="0 0 16 16">
+        <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+      </svg>
+    </div><h4 data-i18n="f_adaptive_title">تدريب تكيّفي</h4><p data-i18n="f_adaptive_desc">تمارين مخصصة لنقاط ضعفك.</p></div>
+    
+    <div class="feature" data-nav="stats"><div class="ic">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
+        <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1z"/>
+      </svg></div><h4 data-i18n="f_stats_title">إحصائيات مفصّلة</h4><p data-i18n="f_stats_desc">رسوم بيانية وتحليل عميق للأداء.</p></div>
+    
+    <div class="feature" data-nav="achievements"><div class="ic">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
+        <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518z"/>
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+        <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11m0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12"/>
+      </svg>  
+    </div><h4 data-i18n="f_ach_title">الإنجازات</h4><p data-i18n="f_ach_desc">اجمع XP وافتح شارات جديدة.</p></div>
+  </div>
+</section>
+
+<section class="page" id="page-test">
+  <div class="training-top">
+    <div class="chips">
+      <div class="chip"><strong id="chipLangVal">العربية</strong></div>
+      <div class="chip"><strong id="chipDiffVal">متوسط</strong></div>
+      <div class="chip live"><strong id="chipTimeVal">--</strong></div>
+      <div class="chip" id="chipMode"><strong id="chipModeVal">Time</strong></div>
+    </div>
+    <div class="flex">
+      <button class="btn ghost" data-nav="home" data-i18n="back">رجوع</button>
+      <button class="btn danger" id="resetTestBtn" data-i18n="reset">إعادة</button>
+    </div>
+  </div>
+
+  <div class="finger-info" id="fingerInfo" aria-live="polite">
+    <span class="finger-color" id="fingerColor"></span>
+    <span id="fingerText" data-i18n="finger_hint">ابدأ الكتابة لعرض معلومات الإصبع</span>
+  </div>
+
+  <div class="live-stats" role="status" aria-live="polite">
+    <div class="live-stat wpm"><div class="label">Raw WPM</div><div class="value" id="liveRawWpm">0</div></div>
+    <div class="live-stat wpm"><div class="label">Adj. WPM</div><div class="value" id="liveWpm">0</div></div>
+    <div class="live-stat"><div class="label">CPM</div><div class="value" id="liveCpm">0</div></div>
+    <div class="live-stat acc"><div class="label">Accuracy</div><div class="value" id="liveAcc">100%</div></div>
+    <div class="live-stat err"><div class="label">Mistakes</div><div class="value" id="liveErr">0</div></div>
+    <div class="live-stat"><div class="label">Time</div><div class="value" id="liveTime">0s</div></div>
+  </div>
+
+  <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progressBar"></div></div>
+
+  <div class="text-area rtl" id="textArea" tabindex="0" role="textbox" aria-label="Typing area" aria-readonly="true"></div>
+
+  <div class="keyboard" id="keyboard" role="img" aria-label="Virtual keyboard"></div>
+
+  <div class="flex" style="justify-content:space-between">
+    <div class="text-muted" style="font-size:13px" data-i18n="typing_hint">ابدأ الكتابة — المؤقت يبدأ تلقائياً.</div>
+    <div class="flex">
+      <select id="modeSel" aria-label="Test mode">
+        <option value="time" data-i18n="mode_time">وقت</option>
+        <option value="words" data-i18n="mode_words">كلمات</option>
+        <option value="quote" data-i18n="mode_quote">اقتباس</option>
+      </select>
+      <select id="durationSel" aria-label="Duration">
+        <option value="15">15s</option>
+        <option value="30">30s</option>
+        <option value="60" selected>60s</option>
+        <option value="120">120s</option>
+        <option value="300">300s</option>
+      </select>
+      <select id="diffSel" aria-label="Difficulty">
+        <option value="easy" data-i18n="diff_easy">سهل</option>
+        <option value="medium" selected data-i18n="diff_medium">متوسط</option>
+        <option value="hard" data-i18n="diff_hard">صعب</option>
+      </select>
+    </div>
+  </div>
+</section>
+
+
+<section class="page" id="page-results">
+  <h2 class="mb-16" data-i18n="results_title">نتيجة الاختبار</h2>
+  <div class="results-grid">
+    <div class="result-card best"><div class="label">Raw WPM</div><div class="value text-neon" id="resRawWpm">0</div><div class="sub" id="resRawWpmDelta"></div></div>
+    <div class="result-card"><div class="label">Adjusted WPM</div><div class="value text-purple" id="resWpm">0</div><div class="sub" id="resWpmDelta"></div></div>
+    <div class="result-card"><div class="label">CPM</div><div class="value" id="resCpm">0</div><div class="sub" data-i18n="chars_per_min">حرف/دقيقة</div></div>
+    <div class="result-card"><div class="label">Accuracy</div><div class="value" id="resAcc">0%</div><div class="sub" id="resErr"></div></div>
+    <div class="result-card"><div class="label">Time</div><div class="value" id="resTime">0s</div><div class="sub" id="resDate"></div></div>
+  </div>
+
+  <div class="stats-summary">
+    <div class="stat-box"><div class="label">Correct</div><div class="value" id="resCorrect">0</div></div>
+    <div class="stat-box"><div class="label">Mistakes</div><div class="value" style="color:var(--error)" id="resMistakes">0</div></div>
+    <div class="stat-box"><div class="label">Corrections</div><div class="value" style="color:var(--warn)" id="resCorrections">0</div></div>
+    <div class="stat-box"><div class="label">Final Errors</div><div class="value" style="color:var(--error)" id="resFinalErrors">0</div></div>
+    <div class="stat-box"><div class="label">XP Earned</div><div class="value" style="color:var(--neon-2)" id="resXp">0</div></div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab active" data-tab="analysis" role="tab" data-i18n="tab_analysis">تحليل الأخطاء</button>
+    <button class="tab" data-tab="heatmap" role="tab" data-i18n="tab_heatmap">Heatmap</button>
+    <button class="tab" data-tab="feedback" role="tab" data-i18n="tab_feedback">تقييم الأداء</button>
+  </div>
+
+  <div id="tab-analysis" class="tab-content">
+    <div class="error-analysis">
+      <div class="card">
+        <h3 data-i18n="problem_keys">أكثر المفاتيح إشكالية</h3>
+        <div class="key-error-list" id="problemKeys"></div>
+      </div>
+      <div class="card">
+        <h3 data-i18n="weak_fingers">أضعف الأصابع</h3>
+        <div class="key-error-list" id="weakFingers"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-heatmap" class="tab-content hidden">
+    <div class="card">
+      <h3 data-i18n="keyboard_heatmap">خريطة الكيبورد</h3>
+      <p class="text-muted mb-16" style="font-size:13px" data-i18n="heatmap_desc">الأحمر = أخطاء كثيرة · الأخضر = أداء ممتاز</p>
+      <div class="keyboard" id="heatmapKeyboard"></div>
+      <div class="heatmap-legend">
+        <span><span class="dot low"></span><span data-i18n="heatmap_low">منخفض</span></span>
+        <span><span class="dot medium"></span><span data-i18n="heatmap_medium">متوسط</span></span>
+        <span><span class="dot high"></span><span data-i18n="heatmap_high">مرتفع</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-feedback" class="tab-content hidden">
+    <div class="feedback">
+      <div class="card strengths"><h3 data-i18n="strengths">نقاط القوة</h3><ul id="strengthsList"></ul></div>
+      <div class="card weaknesses"><h3 data-i18n="weaknesses">نقاط التحسين</h3><ul id="weaknessesList"></ul></div>
+    </div>
+    <div class="card mb-16">
+      <h3 data-i18n="suggestions">اقتراحات</h3>
+      <ul id="suggestionsList" style="list-style:none;display:flex;flex-direction:column;gap:8px"></ul>
+    </div>
+  </div>
+
+  <div class="flex" style="justify-content:center">
+    <button class="btn primary" id="tryAgainBtn" data-i18n="try_again">حاول مرة أخرى</button>
+    <button class="btn accent" id="practiceWeakBtn" data-i18n="practice_weak">تدرّب على نقاط الضعف</button>
+    <button class="btn" data-nav="home" data-i18n="home">الرئيسية</button>
+  </div>
+</section>
+
+
+<section class="page" id="page-learn">
+  <h2 class="mb-8" data-i18n="learn_title">رحلة التعلّم</h2>
+  <p class="text-muted mb-24" data-i18n="learn_desc">13 مستوى متدرّج — من وضع الأصابع إلى الكتابة الاحترافية.</p>
+  <div class="levels-grid" id="levelsGrid"></div>
+</section>
+
+
+<section class="page" id="page-code">
+  <h2 class="mb-8" data-i18n="code_title">كتابة الأكواد</h2>
+  <p class="text-muted mb-24" data-i18n="code_desc">تدرّب على الرموز الخاصة التي يستخدمها المبرمجون.</p>
+  <div class="card mb-16">
+    <div class="flex mb-16">
+      <select id="codeLangSel">
+        <option value="javascript">JavaScript</option>
+        <option value="python">Python</option>
+        <option value="cpp">C++</option>
+        <option value="html">HTML</option>
+        <option value="css">CSS</option>
+      </select>
+      <button class="btn primary" id="startCodeBtn" data-i18n="start_code">ابدأ التدريب</button>
+    </div>
+  </div>
+</section>
+
+
+<section class="page" id="page-custom">
+  <h2 class="mb-8" data-i18n="custom_title">مقالك الخاص</h2>
+  <p class="text-muted mb-24" data-i18n="custom_desc">الصق أي نص أو مقال جايبه وتدرّب على الكتابة عليه مباشرة، أو احفظه لاستخدامه لاحقاً.</p>
+
+  <div class="card mb-16">
+    <input type="text" id="customTitleInput" data-i18n-placeholder="custom_title_placeholder" placeholder="عنوان المقال (اختياري)" style="width:100%;margin-bottom:12px">
+    <textarea id="customTextInput" data-i18n-placeholder="custom_text_placeholder" placeholder="الصق نص مقالك هنا لتتعلم الكتابة عليه..." style="min-height:200px"></textarea>
+    <div class="flex mt-16" style="justify-content:space-between">
+      <span class="text-muted mono" style="font-size:12px" id="customCharCount">0 <span data-i18n="custom_chars">حرف</span></span>
+      <div class="flex">
+        <button class="btn accent" id="customSaveBtn" data-i18n="custom_save">حفظ للاستخدام لاحقاً</button>
+        <button class="btn primary" id="customStartBtn" data-i18n="custom_start">ابدأ الكتابة على هذا النص</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 data-i18n="custom_saved_title">المقالات المحفوظة</h3>
+    <div class="history-list mt-16" id="customList"></div>
+  </div>
+</section>
+
+<section class="page" id="page-adaptive">
+  <h2 class="mb-8" data-i18n="adaptive_title">تدريب تكيّفي</h2>
+  <p class="text-muted mb-24" data-i18n="adaptive_desc">تمارين مخصصة بناءً على تحليل أدائك.</p>
+  <div class="card mb-16">
+    <h3 data-i18n="weak_analysis">تحليل نقاط الضعف</h3>
+    <div id="adaptiveAnalysis" class="mt-16"></div>
+    <button class="btn primary mt-16" id="startAdaptiveBtn" data-i18n="start_adaptive">ابدأ تمرين مخصص</button>
+  </div>
+</section>
+
+<section class="page" id="page-stats">
+  <h2 class="mb-16" data-i18n="stats_title">الإحصائيات</h2>
+  <div class="tabs" role="tablist">
+    <button class="tab active" data-tab="overview" role="tab" data-i18n="tab_overview">نظرة عامة</button>
+    <button class="tab" data-tab="charts" role="tab" data-i18n="tab_charts">الرسوم البيانية</button>
+    <button class="tab" data-tab="history" role="tab" data-i18n="tab_history">السجل</button>
+  </div>
+
+  <div id="tab-overview" class="tab-content">
+    <div class="stats-summary" id="statsOverview"></div>
+  </div>
+
+  <div id="tab-charts" class="tab-content hidden">
+    <div class="chart-container">
+      <h3 data-i18n="chart_wpm">تطور السرعة (WPM)</h3>
+      <svg class="chart-svg" id="chartWpm" viewBox="0 0 600 200" preserveAspectRatio="none"></svg>
+    </div>
+    <div class="chart-container">
+      <h3 data-i18n="chart_acc">تطور الدقة (Accuracy)</h3>
+      <svg class="chart-svg" id="chartAcc" viewBox="0 0 600 200" preserveAspectRatio="none"></svg>
+    </div>
+    <div class="chart-container">
+      <h3 data-i18n="chart_lang">العربية vs الإنجليزية</h3>
+      <svg class="chart-svg" id="chartLang" viewBox="0 0 600 200" preserveAspectRatio="none"></svg>
+    </div>
+  </div>
+
+  <div id="tab-history" class="tab-content hidden">
+    <div class="flex mb-16" style="justify-content:space-between">
+      <h3 data-i18n="history_title">سجل الاختبارات</h3>
+      <button class="btn danger" id="clearHistoryBtn" data-i18n="clear_history">مسح السجل</button>
+    </div>
+    <div class="history-list" id="historyList"></div>
+  </div>
+</section>
+
+<section class="page" id="page-achievements">
+  <h2 class="mb-8" data-i18n="ach_title">الإنجازات</h2>
+  <p class="text-muted mb-8" data-i18n="ach_desc">اجمع XP وافتح شارات جديدة.</p>
+  <div class="card mb-16">
+    <div class="flex" style="justify-content:space-between">
+      <div>
+        <div class="text-muted" style="font-size:12px" data-i18n="current_level">المستوى الحالي</div>
+        <div class="mono text-neon" style="font-size:24px;font-weight:800"><span id="achLevel">1</span></div>
+      </div>
+      <div style="flex:1;margin:0 20px">
+        <div class="flex" style="justify-content:space-between;font-size:12px">
+          <span>XP</span>
+          <span class="mono"><span id="achXp">0</span> / <span id="achXpNext">100</span></span>
+        </div>
+        <div class="xp-bar"><div id="achXpBar" style="width:0%"></div></div>
+      </div>
+      <div>
+        <div class="text-muted" style="font-size:12px" data-i18n="unlocked">مفتوحة</div>
+        <div class="mono text-neon" style="font-size:24px;font-weight:800"><span id="achUnlocked">0</span>/<span id="achTotal">0</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="achievements-grid" id="achievementsGrid"></div>
+</section>
+
+<section class="page" id="page-settings">
+  <h2 class="mb-16" data-i18n="settings_title">الإعدادات</h2>
+  <div class="settings-grid">
+    <div class="card">
+      <h3 data-i18n="s_general">عام</h3>
+      <div class="setting-row">
+        <div><div class="label" data-i18n="s_lang">اللغة</div><div class="desc" data-i18n="s_lang_desc">لغة الواجهة</div></div>
+        <select id="setLang"><option value="ar">العربية</option><option value="en">English</option></select>
+      </div>
+      <div class="setting-row">
+        <div><div class="label" data-i18n="s_sound">الأصوات</div><div class="desc" data-i18n="s_sound_desc">صوت عند الضغط</div></div>
+        <select id="setSound"><option value="off" data-i18n="off">إيقاف</option><option value="on" data-i18n="on">تشغيل</option></select>
+      </div>
+      <div class="setting-row">
+        <div><div class="label" data-i18n="s_caret">حركة المؤشر</div><div class="desc" data-i18n="s_caret_desc">تأثيرات بصرية</div></div>
+        <select id="setMotion"><option value="on" data-i18n="on">تشغيل</option><option value="off" data-i18n="off">إيقاف</option></select>
+      </div>
+    </div>
+    <div class="card">
+      <h3 data-i18n="s_data">البيانات</h3>
+      <div class="setting-row">
+        <div><div class="label" data-i18n="s_export">تصدير</div><div class="desc" data-i18n="s_export_desc">تنزيل نسخة</div></div>
+        <button class="btn" id="exportBtn" data-i18n="export">تصدير</button>
+      </div>
+      <div class="setting-row">
+        <div><div class="label" data-i18n="s_import">استيراد</div><div class="desc" data-i18n="s_import_desc">استعادة نسخة</div></div>
+        <button class="btn" id="importBtn" data-i18n="import">استيراد</button>
+      </div>
+      <div class="setting-row">
+        <div><div class="label" data-i18n="s_reset">إعادة تعيين</div><div class="desc" data-i18n="s_reset_desc">حذف كل البيانات</div></div>
+        <button class="btn danger" id="resetAllBtn" data-i18n="reset_all">إعادة تعيين</button>
+      </div>
+      <div class="setting-row">
+        <div><div class="label">Run Tests</div><div class="desc">تشغيل الاختبارات الآلية</div></div>
+        <button class="btn" id="runTestsBtn">Run</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 9C8.55228 9 9 8.55228 9 8C9 7.44772 8.55228 7 8 7C7.44772 7 7 7.44772 7 8C7 8.55228 7.44772 9 8 9Z"fill="currentColor"/>
+            <path d="M9 15C8.44772 15 8 15.4477 8 16C8 16.5523 8.44772 17 9 17H15C15.5523 17 16 16.5523 16 16C16 15.4477 15.5523 15 15 15H9Z"fill="currentColor"/>
+            <path d="M9 12C9 12.5523 8.55228 13 8 13C7.44772 13 7 12.5523 7 12C7 11.4477 7.44772 11 8 11C8.55228 11 9 11.4477 9 12Z"fill="currentColor"/>
+            <path d="M12 9C12.5523 9 13 8.55228 13 8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8C11 8.55228 11.4477 9 12 9Z"fill="currentColor"/>
+            <path d="M13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12Z"fill="currentColor"/>
+            <path d="M16 9C16.5523 9 17 8.55228 17 8C17 7.44772 16.5523 7 16 7C15.4477 7 15 7.44772 15 8C15 8.55228 15.4477 9 16 9Z"fill="currentColor"/>
+            <path d="M17 12C17 12.5523 16.5523 13 16 13C15.4477 13 15 12.5523 15 12C15 11.4477 15.4477 11 16 11C16.5523 11 17 11.4477 17 12Z"fill="currentColor"/>
+            <path fill-rule="evenodd"clip-rule="evenodd"d="M3 6C3 4.34315 4.34315 3 6 3H18C19.6569 3 21 4.34315 21 6V18C21 19.6569 19.6569 21 18 21H6C4.34315 21 3 19.6569 3 18V6ZM6 5H18C18.5523 5 19 5.44772 19 6V18C19 18.5523 18.5523 19 18 19H6C5.44772 19 5 18.5523 5 18V6C5 5.44772 5.44772 5 6 5Z"fill="currentColor"/>
+        </svg> 
+      </div>
+      <div>
+        <div class="footer-name" data-i18n="brand">Keyora</div>
+        <p class="footer-tagline" data-i18n="footer_tagline">تدرّب. تحسّن. تفوّق.</p>
+      </div>
+    </div>
+
+    <nav class="footer-links" aria-label="Footer">
+      <button class="footer-link" onclick="window.open('https://bassem-social-hub.pages.dev/', '_blank')">Bassem Social</button>
+      <button class="footer-link" onclick="window.open('https://hyperflow-corp.pages.dev/', '_blank')">HyperFlow corp</button>
+      <button class="footer-link" onclick="window.open('https://bassemmohamed.pages.dev/', '_blank')">Portfolio</button>
+      <button class="footer-link" onclick="window.open('https://github.com/BassemMohamed44/', '_blank')">GitHub</button>
+    </nav>
+
+    <div class="footer-meta">
+      <span data-i18n="footer_rights">© 2026 Keyora — جميع الحقوق محفوظة</span>
+      <span class="footer-dot">·</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<input type="file" id="importFile" accept=".json" style="display:none">
+
+<script src="main.js"></script>
+</body>
+</html>
