@@ -57,6 +57,7 @@ const I18N = {
     heatmap_low: 'منخفض', heatmap_medium: 'متوسط', heatmap_high: 'مرتفع',
     strengths: 'نقاط القوة', weaknesses: ' نقاط التحسين', suggestions: 'اقتراحات',
     try_again: ' حاول مرة أخرى', practice_weak: ' تدرّب على نقاط الضعف', home: ' الرئيسية',
+    back_to_learn: ' العودة لقائمة التعلّم',
     learn_title: ' رحلة التعلّم', learn_desc: '13 مستوى متدرّج — من وضع الأصابع إلى الكتابة الاحترافية.',
     code_title: 'كتابة الأكواد', code_desc: 'تدرّب على الرموز الخاصة التي يستخدمها المبرمجون.', start_code: 'ابدأ التدريب',
     adaptive_title: ' تدريب تكيّفي', adaptive_desc: 'تمارين مخصصة بناءً على تحليل أدائك.',
@@ -115,6 +116,7 @@ const I18N = {
     heatmap_low: 'Low', heatmap_medium: 'Medium', heatmap_high: 'High',
     strengths: 'Strengths', weaknesses: ' Areas to Improve', suggestions: ' Suggestions',
     try_again: 'Try Again', practice_weak: ' Practice Weak Points', home: ' Home',
+    back_to_learn: ' Back to Learning',
     learn_title: 'Learning Journey', learn_desc: '13 progressive levels — from finger placement to pro typing.',
     code_title: ' Code Typing', code_desc: 'Practice special symbols used by programmers.', start_code: 'Start Practice',
     adaptive_title: 'Adaptive Training', adaptive_desc: 'Custom exercises based on your performance analysis.',
@@ -530,6 +532,9 @@ const TypingEngine = {
     document.getElementById('practiceWeakBtn').addEventListener('click', () => {
       AdaptiveEngine.startWeakPractice();
     });
+    document.getElementById('backToLearnBtn').addEventListener('click', () => {
+      UI.showPage('learn');
+    });
 
     document.addEventListener('keydown', e => this.onKeyDown(e));
     document.addEventListener('keyup', e => this.onKeyUp(e));
@@ -794,6 +799,7 @@ const TypingEngine = {
       state.keyErrorStats[key].total += data.total;
     });
 
+    let leveledUp = false;
     if (this.mode === 'level' && this.currentLevelId) {
       const lv = LEVELS.find(l => l.id === this.currentLevelId);
       if (lv && adjWpm >= lv.reqWpm && acc >= lv.reqAcc) {
@@ -801,9 +807,11 @@ const TypingEngine = {
           state.completedLevels.push(this.currentLevelId);
           UI.showToast(`${t('level_completed')} ${this.currentLevelId}`, 'success');
         }
+        leveledUp = true;
       }
       this.currentLevelId = null;
     }
+    record.leveledUp = leveledUp;
 
     const newLevel = Math.min(10, 1 + state.completedLevels.length);
     if (newLevel > state.level) state.level = newLevel;
@@ -1104,6 +1112,14 @@ const Results = {
     }
 
     UI.showPage('results');
+
+    const backBtn = document.getElementById('backToLearnBtn');
+    if (record.mode === 'level') {
+      backBtn.classList.remove('hidden');
+      LevelSystem.render();
+    } else {
+      backBtn.classList.add('hidden');
+    }
   },
 
   renderErrorAnalysis() {
